@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: server-dep
+ labels:
+  app: server
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: server
+ template:
+  metadata:
+   labels:
+    app: server
+  spec:
+   containers:
+    - name: server
+      image: kvarc/event_server:latest
+      ports:
+       - containerPort: 1514
+       - containerPort: 8080
