@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 
-	pb "github.com/PutskouDzmitry/golang-trainnig-final-task/proto/go_proto"
+	pb "github.com/PutskouDzmitry/golang-trainnig-final/proto/go_proto"
 
 	"github.com/sirupsen/logrus"
 	"gopkg.in/mcuadros/go-syslog.v2"
@@ -21,6 +21,7 @@ func (u EventServer) GetEvent(stream pb.Service_GetEventServer) error {
 	u.CheckClient(stream, handler)
 	u.server.SetHandler(handler)
 	eventChannel := make(chan *pb.Event)
+	logrus.Info("Client")
 	go func(channel syslog.LogPartsChannel) {
 		for logParts := range channel {
 			event := &pb.Event{

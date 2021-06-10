@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/PutskouDzmitry/golang-trainnig-final-task/proto/go_proto"
-	"github.com/PutskouDzmitry/golang-trainnig-final-task/server/pkg/api"
+	pb "github.com/PutskouDzmitry/golang-trainnig-final/proto/go_proto"
+	"github.com/PutskouDzmitry/golang-trainnig-final/server/pkg/api"
 
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
@@ -17,6 +17,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	logrus.Info("Start server")
 	serverGrpc := grpc.NewServer()
 	channel := make(syslog.LogPartsChannel)
 	handler := syslog.NewChannelHandler(channel)

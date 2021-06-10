@@ -3,3 +3,4 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY server_cmd /app
 ENTRYPOINT ["./server_cmd"]
+EXPOSE 1514

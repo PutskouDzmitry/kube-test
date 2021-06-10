@@ -3,14 +3,14 @@ package main
 import (
 	"context"
 
-	pb "github.com/PutskouDzmitry/golang-trainnig-final-task/proto/go_proto"
+	pb "github.com/PutskouDzmitry/golang-trainnig-final/proto/go_proto"
 
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:8081", grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial("event_client:8081", grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		logrus.Fatal(err)
 	}
@@ -20,6 +20,7 @@ func main() {
 		logrus.Fatal(err)
 	}
 	for {
+		logrus.Info("Prepare")
 		event, err := SendInfo(stream)
 		if err != nil {
 			logrus.Fatal(err)
