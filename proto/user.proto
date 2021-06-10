@@ -1,0 +1,25 @@
+// protoc -I proto user.proto --go_out=plugins=grpc:proto
+
+syntax = "proto3";
+
+option go_package = "/go_proto";
+
+service Service{
+    rpc GetEvent(stream EventRequest) returns (stream EventResponse);
+}
+
+message Event {
+    string facility = 1;
+    string message = 2;
+    string severity = 3;
+    string time = 4;
+
+}
+
+message EventRequest {
+
+}
+
+message EventResponse {
+    Event event = 1;
+}
